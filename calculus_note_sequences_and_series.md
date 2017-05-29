@@ -9,6 +9,39 @@ We'll introduce several methods (tests) to solve the following problems,
 1. Determine whether a series is convergent or divergent
 2. Estimate the sum of a series if convergent
 
+## Basic Concepts
+
+### Sequences
+
+A sequence is a infinite list of number: $a_1, a_2, a_3, ...$ also denoted by $\{a_n\}_{n=1}^{\infty}$
+
+**Definition** A sequence $\{a_n\}$ as the limit L and $\lim_{n \to \infty} a_n = L$, we say the sequnce **converges**. Otherwise, we say the sequence **diverges**.
+
+**The Squeeze theorem** If $a_n \le b_n \le c_n$ for $n \ge n_0$ and $\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = L$, then $\lim_{n \to \infty} b_n = L$.
+
+**Theorem** If $\lim_{n \to \infty} |a_n| = 0$, then $\lim_{n \to \infty} a_n = 0$.
+
+**Definition** A sequence $\{a_n\}$  is called **increasing** if $a_n < a_{n + 1}$ for all n > 1. It is called **decreasing** if $a_n  > a_{n + 1}$ for all n > 1. A sequence is **monotonic** if it is either increasing or decreasing.
+
+**Monotonic Sequence theorem** Every bounded, monotonic sequence is convergent.
+
+### Series
+
+**Definition** When we add the terms of an infinite sequence, we get a series.
+
+**Definition** A partial sum $s_n = \sum_{i=1}^n a_i$ is the first n terms of the series.
+
+**Definition** A series is called convergent if its partial sum has a limit of real number $\lim_{n \to \infty} s_n = s$. Otherwise it's divergent.
+
+**Theorem** If the series $\sum a_n$ is convergent, then $\lim_{n \to \infty} a_n = 0$.
+
+**Test for Divergence** if $\lim_{n \to \infty} a_n$ does not exist or if $\lim_{n \to \infty} \ne 0$, then the series $\sum a_n$ is divergent.
+
+#### Example
+
+1. The geometric series $\sum_{n=1}^{\infty} a r^{n - 1}$ is convergent if $|r| < 1$ and its sum is $\frac{a}{1 - r}$. If $|r| \ge 1$ the series is divergent.
+2. The p-series $\sum \frac{1}{n^p}$ is convergent if $p>1$ and divergent if $p \le 1$.
+
 ## Integral Test
 
 ###Convergence
@@ -126,7 +159,7 @@ For example, $\sum \frac{\cos n}{n^2} \le  \sum |\frac{\cos n}{n^2}| \le \sum \f
 #### Example
 
 1. $\sum (-1)^n \frac{n^3}{3^n}$ is absolutely convergent since $|\frac{a_{n+1}}{a_n}| = \frac{1}{3} (1 + 1/n)^3 \to \frac{1}{3} \lt 1$
-2.  $\sum \frac{n^n}{n!}$ is divergent since $|\frac{a_{n+1}}{a_n}| = (1 + 1/n)^n \to e \gt 1$
+2. $\sum \frac{n^n}{n!}$ is divergent since $|\frac{a_{n+1}}{a_n}| = (1 + 1/n)^n \to e \gt 1$
 3. For $\sum (\frac{2n+3}{3n+2})^n$, $\sqrt [n] {|a_n|} \to 2/3 <1$, thus is absolutely convergent
 
 ## Strategy for Testing Series
@@ -152,21 +185,101 @@ In general, the Ratio Test (or sometimes the Root Test) should be used to determ
 
 #### Example
 
-*Example 1* For what values of x is the series $\sum  n! x^n$ convergent? We use the Ratio Test. 
+*Example 1* For what values of x is the series $\sum  n! x^n$ convergent? 
 
-$|\frac{a_{n+1}}{a_n}| = (n+1) |x$, so the series converge only if $x=0$.
+We use the Ratio Test. $|\frac{a_{n+1}}{a_n}| = (n+1) |x|$, so the series converge only if $x=0$.
 
 *Example 2* For what values of x does the series $\sum \frac{(x - 3)^n}{n}$ converge?
 
-$|\frac{a_{n+1}}{a_n}| \to |x - 3|$, when $2 < x < 4$ the series converge. The Ratio Test gives no information when the ratio is 1, so we should consider them. When $x=4$ the series becomes a harmonic series which diverge. When $x=2$ then series is an alternating series which converge. So when $2 \le x \lt 4$ the series converge.
+$|\frac{a_{n+1}}{a_n}| \to |x - 3|$, when $2 < x < 4$ the series converge. *The Ratio Test gives no information when the ratio is 1, so we should consider them.* When $x=4$ the series becomes a harmonic series which diverge. When $x=2$ then series is an alternating series which converge. So when $2 \le x \lt 4$ the series converge.
 
 ### Representations of Functions as Power Series
 
 > You might wonder why we would ever want to express a known function as a sum of infinitely many terms. We will see later that this strategy is useful for integrating functions that don’t have elementary antiderivatives, for solving differential equations, and for approximating functions by polynomials.
 
+Start with a simple equation *(all following representations are based on it)*
 
+$\frac{1}{1-x} = 1 + x + x^2 + x^3 + ... = \sum x^n, |x| < 1$
+
+#### Example
+
+*Example 1* Express $1/(1 + x^2)$ as the sum of a power series and find the interval of convergence.
+
+$\frac{1}{1 + x^2} = \frac{1}{1 - (-x^2)} = \sum (-x^2)^n = \sum (-1)^n x^{2n}$ the interval of convergence is $(-1, 1)$
+
+*Example 2* Find a power series representation for $1/(x+2)$.
+
+$\frac{1}{2+x} = \frac{1}{2[1 - (-\frac{x}{2})]} = \frac{1}{2} \sum (- \frac{x}{2})^n$ The interval of convergence is $(-2, 2)$
+
+*Example 3* Find a power series representation for $x^3/(x+2)$.
+
+$\frac{x^3}{2+x} = x^3 \frac{1}{2+x} = \sum \frac{(-1)^n}{2^{n+1}} x^{n+3}$
+
+### Differentiation and Integration of Power Series
+
+**Theorem** If the power series $\sum c_n(x - a)^n$ has radius of convergence $R>0$, then the function $f$ defined by $f(x) = c_0 + c_1(x - a) + c_2(x - a)^2 + ... = \sum c_n(x - a)^n$ is differentiable on the interval $(a - R, a + R)$ and 
+
+1. $f'(x) = c_1 + 2c_2(x - a) + 3c_3(x - a)^2 = \sum n_cn(x - a)^{n - 1}$
+2. $\int f(x) dx = C + \sum c_n \frac{(x - a)^{n + 1}}{n + 1}$
+
+The radius of convergence of the power series in above equations are both R.
+
+> We know that, for finite sums, the derivative of a sum is the sum of the derivatives and the integral of a sum is the sum of the integrals. The theorem above assert that the same is true for infinite sums, provided we are dealing with power series.
+
+#### Example
+
+*Example 1* Differentiate **Bessel function** $J_0(x) = \sum \frac{(-1)^n x^{2n}}{2^{2n} (n!)^2}$
+
+By Ratio Test we get $|\frac{a_{n+1}}{a_n}| = \frac{x^2}{2^2 (n+1)^2} \to 0$ so the series converge on $(-\infty, \infty)$. So the derivative is found by term-by-term differentiation: $J_0'(x) = \sum \frac{(-1)^n 2n x^{2n - 1}}{2^{2n} (n!)^2}$
+
+*Example 2* Express $1/(1 - x)^2$ as a power series. Differentiating each side of $\frac{1}{1-x} = \sum x^n$, we get $\frac{1}{(1- x)^2} = \sum n x^{n-1}$. The radius of convergence stays the same as original, namely, $R=1$.
+
+*Example 3* Find a power series representation for $\ln (1+x)$ and its radius of convergence. It's easy to find a power series representation of its derivative. Integrating both sides of it to get the representation of the original.
+
+*Example 4* Find a power series representation for $f(x) = tan^{-1} x$. The derivative is $\frac{1}{1 + x^2}$, find a power series representation and integrate both sides.
 
 ## Taylor and Maclaurin Series
+
+Here we investigate more general problems: Which functions have power series representations? How can we find such representations?
+
+**Theorem** If $f$ has a power series representation (expansion) at a, that is, if $f(x) = \sum c_n (x - a)^n, |x - a| < R$, then its coefficients are given by the formula $c_n = \frac{f^{(n)}(a)}{n!}$.
+
+Substituting $c_n$ back into the series, we have $f(x) = \sum \frac{f^{(n)}(a)}{n!} (x - a)^n$, which is called the **Taylor series of the function $f$ at $a$**. For the special case $a = 0$ the Taylor series becomes $f(x) = \sum \frac{f^{(n)}(0)}{n!} x ^n$, which is usually called **Maclaurin series**.
+
+> The theorem above is based on **if $f$ has a power series representation**.
+
+**Definition** nth-degree Taylor polynomial of $f$ at $a$, $T_n(x) = \sum_{i=0}^n \frac{f^{(i)}(a)}{i!} (x - a)^i = f(a) + \frac{f'(a)}{1!} (x - a) + \frac{f''(a)}{2!} (x - a)^2 + ... + \frac{f^{(n)}(a)}{n!} (x - a)^n$
+
+**Definition** remainder of Taylor series $R_n(x) = f(x) - T_n(x)$
+
+**Theorem** **WHEN does a function equals to its Taylor series**. If $f(x) = T_n(x) + R_n(x)$, where $T_n$ is the nth-degree Taylor polynomial of $f$ at $a$ and $\lim_{n \to \infty} R_n(x) = 0$ for $|x - a| < R$, then $f$ is equal to the sum of its Taylor series on the interval $|x - a| < R$. 
+
+**Theorem HOW to determine the remainder approach to zero.** If $|f^{(n + 1)} (x)| \le M$ for $|x - a| \le d$, then the remainder $R_n(x)$ of the Taylor series satisfies the inequality $|R_n(x)| \le \frac{M}{(n + 1)!} |x - a|^{n + 1}$ for $|x - a| \le d$
+
+**A useful fact** $\lim_{n \to \infty} \frac{x^n}{n!} = 0$ for every real number $x$.
+
+#### Example
+
+Using above theorems, we can prove that
+
+> Practice with the below examples.
+
+1. $\frac{1}{1 - x} = \sum x^n = 1 + x + x^2 + x^3 + ...$ with $R=1$
+2. $e^x = \sum \frac{x^n}{n!} = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} +...$ with $R = \infty$
+3. $\sin x = \sum (-1)^n \frac{x^{2n + 1}}{(2n + 1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} +...$ with $R = \infty$
+4. $\cos x = \sum (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} +...$ with $R = \infty$
+5. $\tan x = \sum (-1)^n \frac{x^{2n + 1}}{2n + 1} = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} +...$ with $R=1$
+6. $\ln (1 + x) = \sum_{n=1}^{\infty} (-1)^{n - 1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} +...$ with $R=1$
+7. $(1 + x)^k = \sum C_n^k x^n = 1 + kx +\frac{k(k-1)}{2!} x^2 +\frac{k(k-1)(k-2)}{3!} x^3 + ...$ with $R=1$
+
+### Error of Estimationg using nth-degree Taylor polynomial 
+
+It's common to use first n terms of Taylor expansion as an estimation of $f$. Actutally this is how some of the calculator or computer programs do while calculating $e^x$, $\sin x$ ... Here're possible methods for estimating the size of error:
+
+1. If the series happens to be an alternating series, we can use the Alternating Series Estimation Theorem.
+2. In all cases we can use Taylor’s Inequality, which says that if $|f^{(n + 1)}(x)| \le M$, then $|R_n(x)| \le \frac{M}{(n + 1)!} |x - a|^{n + 1}$
+
+
 
 
 
